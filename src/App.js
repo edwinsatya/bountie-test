@@ -1,11 +1,10 @@
 import { useLayoutEffect } from "react";
 import { useState } from "react";
 import "./App.css";
-import Form from "./components/Form/Form";
+import FormGroup from "./components/Form/FormGroup";
 import Header from "./components/Header";
+import Privacy from "./components/Privacy";
 import TopInfo from "./components/TopInfo";
-
-//https://restcountries.com/v3.1/all
 
 const getCountries = () => {
   return fetch("https://restcountries.com/v3.1/all")
@@ -62,11 +61,15 @@ function App() {
       <Header />
       <main>
         <TopInfo />
-        <Form
-          setFormState={handleChangeState}
-          dataFormState={formState}
-          dataCountries={listCountry}
-        />
+        <form>
+          <FormGroup
+            setFormState={handleChangeState}
+            dataFormState={formState}
+            dataCountries={listCountry}
+          />
+
+          <Privacy />
+        </form>
       </main>
       <button onClick={() => console.log(formState)}>tes</button>
     </div>

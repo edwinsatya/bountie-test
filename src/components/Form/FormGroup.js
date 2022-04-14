@@ -6,7 +6,7 @@ import InputText from "./Input/InputText";
 import InputWrapper from "./Input/InputWrapper";
 import TitleForm from "./TitleForm";
 
-const Form = ({ setFormState, dataFormState, dataCountries }) => {
+const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
   const listTitle = [
     {
       value: "Mrs",
@@ -58,7 +58,7 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
   };
 
   return (
-    <form className="px-3 py-6">
+    <div className="px-3 py-6">
       <div>
         <TitleForm title="Create New Account" />
         <div className="p-3 lg:p-5">
@@ -266,8 +266,8 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
-export default Form;
+export default FormGroup;

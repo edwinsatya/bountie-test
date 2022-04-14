@@ -3,3 +3,17 @@
 .App {
   font-family: "Raleway", sans-serif;
 }
+
+.form-radio {
+}
+
+input[type="radio"]:checked:after {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #ffa500;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}

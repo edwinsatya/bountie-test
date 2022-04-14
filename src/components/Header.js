@@ -12,8 +12,8 @@ const Header = () => {
             />
           </div>
         </div>
-        <div className="absolute flex justify-center items-center text-xs pb-2 w-1/2 mx-auto bottom-0 lg:top-0 lg:right-5 lg:text-base lg:pb-0 lg:justify-end">
-          <label for="language">Language :</label>
+        <div className="absolute flex justify-center items-center text-xs pb-1 w-1/2 mx-auto bottom-0 lg:top-0 lg:right-5 lg:text-base lg:pb-0 lg:justify-end">
+          <label>Language :</label>
           <select name="language" className="outline-none">
             <option value="volvo">English</option>
             <option value="saab">Indonesian</option>

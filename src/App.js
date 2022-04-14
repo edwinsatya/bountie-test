@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useState } from "react";
 import "./App.css";
 import Form from "./components/Form/Form";
@@ -30,9 +30,25 @@ function App() {
 
   const [listCountry, setListCountry] = useState([]);
 
-  useEffect(() => {
+  const getCountryFlagCode = (countries) => {
+    return countries.map((country) => {
+      const idd = country.idd;
+      const codeNumber = `${idd.root}${idd.suffixes ? idd.suffixes[0] : ""}`;
+      return {
+        codeNumber: codeNumber,
+        country: country.name.common,
+        flag: country.flag,
+      };
+    });
+  };
+
+  useLayoutEffect(() => {
     getCountries()
-      .then((data) => setListCountry(listCountry))
+      .then((data) => {
+        const newVal = getCountryFlagCode(data);
+        console.log(newVal);
+        setListCountry(newVal);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -47,7 +63,11 @@ function App() {
       <Header />
       <main>
         <TopInfo />
-        <Form setFormState={handleChangeState} dataFormState={formState} />
+        <Form
+          setFormState={handleChangeState}
+          dataFormState={formState}
+          dataCountries={listCountry}
+        />
       </main>
       <button onClick={() => console.log(formState)}>tes</button>
     </div>

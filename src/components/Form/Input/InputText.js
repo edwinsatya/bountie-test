@@ -1,8 +1,12 @@
-const InputText = ({ placeHolder, onChange }) => {
+const InputText = ({ className, placeHolder, value, onChange, disabled }) => {
   return (
     <input
+      value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="border border-gray-400 w-full p-2 focus:border-gray-500 outline-none"
+      disabled={disabled}
+      className={`${className} ${
+        disabled && "bg-gray-300"
+      } border border-gray-400 w-full p-2 focus:border-gray-500 outline-none`}
       type="text"
       placeholder={placeHolder}
     />

@@ -1,9 +1,11 @@
+import { useState } from "react";
 import InputRadio from "./Input/InputRadio";
+import InputSelect from "./Input/InputSelect";
 import InputText from "./Input/InputText";
 import InputWrapper from "./Input/InputWrapper";
 import TitleForm from "./TitleForm";
 
-const Form = ({ setFormState, dataFormState }) => {
+const Form = ({ setFormState, dataFormState, dataCountries }) => {
   const listTitle = [
     {
       value: "Mrs",
@@ -21,6 +23,8 @@ const Form = ({ setFormState, dataFormState }) => {
       value: "Dr",
     },
   ];
+
+  const [currentCode, setCurrentCode] = useState("");
 
   return (
     <form className="px-3 py-6">
@@ -74,7 +78,39 @@ const Form = ({ setFormState, dataFormState }) => {
             </InputWrapper>
           </div>
 
-          <InputWrapper title={"Mobile Phone Number"}></InputWrapper>
+          <InputWrapper title={"Mobile Phone Number"} required>
+            <div className="lg:w-1/2 lg:pr-4 flex">
+              <InputSelect
+                className="w-2/12 text-center mr-1"
+                onChange={(e) => setCurrentCode(e.target.value)}
+                options={dataCountries}
+              />
+
+              <InputText className="w-2/12 ml-1" value={currentCode} disabled />
+              <InputText
+                className="w-full"
+                onChange={(e) =>
+                  setFormState({
+                    field: "phoneNumber",
+                    value: `${currentCode + e}`,
+                  })
+                }
+                placeHolder={"Phone Number"}
+              />
+            </div>
+          </InputWrapper>
+
+          <InputWrapper title={"Address"} required>
+            <InputText
+              onChange={(e) =>
+                setFormState({
+                  field: "address",
+                  value: e,
+                })
+              }
+              placeHolder={"Address"}
+            />
+          </InputWrapper>
         </div>
       </div>
     </form>

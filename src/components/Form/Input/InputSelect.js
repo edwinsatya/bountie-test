@@ -1,10 +1,10 @@
-const InputSelect = ({ className, options, onChange }) => {
+const InputSelect = ({ className, options, placeHolder, onChange }) => {
   return (
     <select
       onChange={onChange}
       className={`${className} border border-gray-400 w-full focus:border-gray-500 outline-none`}
+      placeholder={placeHolder || "-"}
     >
-      <option value="-">-</option>
       {options.map((option, idx) => (
         <option key={idx} value={option.value}>
           {option.title}

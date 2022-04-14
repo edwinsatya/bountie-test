@@ -26,6 +26,18 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
 
   const [currentCode, setCurrentCode] = useState("");
 
+  const getDate = () => {
+    const result = [];
+    for (let i = 1; i <= 31; i++) {
+      result.push({
+        title: i,
+        value: i,
+      });
+    }
+
+    return result;
+  };
+
   const computeListCodeAndFlag = () => {
     return dataCountries.map((country) => {
       return {
@@ -47,9 +59,9 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
   return (
     <form className="px-3 py-6">
       <div>
-        <TitleForm title={"Create New Account"} />
+        <TitleForm title="Create New Account" />
         <div className="p-3 lg:p-5">
-          <InputWrapper title={"Title"}>
+          <InputWrapper title="Title">
             <InputRadio
               checked={dataFormState.title}
               onChange={(e) =>
@@ -65,7 +77,7 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
           <div className="flex flex-col lg:flex-row">
             <InputWrapper
               className="lg:w-1/2 lg:pr-5"
-              title={"Last Name"}
+              title="Last Name"
               required
             >
               <InputText
@@ -75,13 +87,15 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
                     value: e,
                   })
                 }
+                required
+                type="text"
                 placeHolder={"Last Name"}
               />
             </InputWrapper>
 
             <InputWrapper
               className="lg:w-1/2 lg:pl-5"
-              title={"First Name"}
+              title="First Name"
               required
             >
               <InputText
@@ -91,20 +105,28 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
                     value: e,
                   })
                 }
+                type="text"
+                required
                 placeHolder={"First Name"}
               />
             </InputWrapper>
           </div>
 
-          <InputWrapper title={"Mobile Phone Number"} required>
+          <InputWrapper title="Mobile Phone Number" required>
             <div className="lg:w-1/2 lg:pr-4 flex">
               <InputSelect
                 className="w-2/12 text-center mr-1"
                 onChange={(e) => setCurrentCode(e.target.value)}
                 options={computeListCodeAndFlag()}
+                required
               />
 
-              <InputText className="w-2/12 ml-1" value={currentCode} disabled />
+              <InputText
+                className="w-2/12 ml-1"
+                type="text"
+                value={currentCode}
+                disabled
+              />
               <InputText
                 className="w-full"
                 onChange={(e) =>
@@ -113,16 +135,18 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
                     value: `${currentCode + e}`,
                   })
                 }
+                type="text"
+                required
                 placeHolder={"Phone Number"}
               />
             </div>
           </InputWrapper>
         </div>
 
-        <TitleForm title={"Address"} />
+        <TitleForm title="Address" />
 
         <div className="p-3 lg:p-5">
-          <InputWrapper title={"Address"}>
+          <InputWrapper title="Address">
             <InputText
               onChange={(e) =>
                 setFormState({
@@ -130,13 +154,14 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
                   value: e,
                 })
               }
+              type="text"
               placeHolder={"Address"}
             />
           </InputWrapper>
 
           <div className="flex flex-col lg:flex-row">
             <InputWrapper
-              title={"Country/Location"}
+              title="Country/Location"
               className="lg:w-1/2 lg:pr-5"
               required
             >
@@ -154,7 +179,7 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
 
             <InputWrapper
               className="lg:w-1/2 lg:pl-5"
-              title={"Province/District"}
+              title="Province/District"
               required
             >
               <InputText
@@ -164,7 +189,74 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
                     value: e,
                   })
                 }
+                type="text"
                 placeHolder={"Province/District"}
+              />
+            </InputWrapper>
+          </div>
+        </div>
+
+        <TitleForm title="Contacts" />
+
+        <div className="p-3 lg:p-5 flex flex-col lg:flex-row">
+          <div className="lg:w-1/2 lg:pr-5">
+            <InputWrapper title="Email Address" required>
+              <InputText
+                onChange={(e) =>
+                  setFormState({
+                    field: "email",
+                    value: e,
+                  })
+                }
+                type="email"
+                required
+                placeHolder={"Email Address"}
+              />
+            </InputWrapper>
+          </div>
+          <div className="lg:w-1/2 lg:pl-5 lg:flex lg:justify-between">
+            <InputWrapper title="Date of birth" required>
+              <InputSelect
+                className="p-2"
+                onChange={(e) =>
+                  setFormState({
+                    field: "date",
+                    value: e,
+                  })
+                }
+                options={getDate()}
+                required
+                placeHolder="DD"
+              />
+            </InputWrapper>
+
+            <InputWrapper title="Month" required>
+              <InputText
+                className="p-2"
+                onChange={(e) =>
+                  setFormState({
+                    field: "date",
+                    value: e,
+                  })
+                }
+                type="number"
+                required
+                placeHolder={"MM"}
+              />
+            </InputWrapper>
+
+            <InputWrapper title="Year">
+              <InputText
+                className="p-2"
+                onChange={(e) =>
+                  setFormState({
+                    field: "date",
+                    value: e,
+                  })
+                }
+                type="number"
+                required
+                placeHolder={"YYYY"}
               />
             </InputWrapper>
           </div>

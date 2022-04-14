@@ -26,6 +26,24 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
 
   const [currentCode, setCurrentCode] = useState("");
 
+  const computeListCodeAndFlag = () => {
+    return dataCountries.map((country) => {
+      return {
+        title: country.flag,
+        value: country.codeNumber,
+      };
+    });
+  };
+
+  const computeListCountry = () => {
+    return dataCountries.map((country) => {
+      return {
+        title: country.country,
+        value: country.country,
+      };
+    });
+  };
+
   return (
     <form className="px-3 py-6">
       <div>
@@ -83,7 +101,7 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
               <InputSelect
                 className="w-2/12 text-center mr-1"
                 onChange={(e) => setCurrentCode(e.target.value)}
-                options={dataCountries}
+                options={computeListCodeAndFlag()}
               />
 
               <InputText className="w-2/12 ml-1" value={currentCode} disabled />
@@ -99,8 +117,12 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
               />
             </div>
           </InputWrapper>
+        </div>
 
-          <InputWrapper title={"Address"} required>
+        <TitleForm title={"Address"} />
+
+        <div className="p-3 lg:p-5">
+          <InputWrapper title={"Address"}>
             <InputText
               onChange={(e) =>
                 setFormState({
@@ -111,6 +133,41 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
               placeHolder={"Address"}
             />
           </InputWrapper>
+
+          <div className="flex flex-col lg:flex-row">
+            <InputWrapper
+              title={"Country/Location"}
+              className="lg:w-1/2 lg:pr-5"
+              required
+            >
+              <InputSelect
+                className="p-2"
+                onChange={(e) =>
+                  setFormState({
+                    field: "country",
+                    value: e,
+                  })
+                }
+                options={computeListCountry()}
+              />
+            </InputWrapper>
+
+            <InputWrapper
+              className="lg:w-1/2 lg:pl-5"
+              title={"Province/District"}
+              required
+            >
+              <InputText
+                onChange={(e) =>
+                  setFormState({
+                    field: "province",
+                    value: e,
+                  })
+                }
+                placeHolder={"Province/District"}
+              />
+            </InputWrapper>
+          </div>
         </div>
       </div>
     </form>

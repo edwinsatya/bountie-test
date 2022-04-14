@@ -4,9 +4,10 @@ const InputSelect = ({ className, options, onChange }) => {
       onChange={onChange}
       className={`${className} border border-gray-400 w-full focus:border-gray-500 outline-none`}
     >
+      <option value="-">-</option>
       {options.map((option, idx) => (
-        <option key={idx} value={option.codeNumber}>
-          {option.flag}
+        <option key={idx} value={option.value}>
+          {option.title}
         </option>
       ))}
     </select>

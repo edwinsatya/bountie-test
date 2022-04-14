@@ -4,7 +4,7 @@ const InputRadio = ({ listTitle, onChange, checked }) => {
       {listTitle.map((title, idx) => (
         <div
           key={idx}
-          className={`${idx === 0 ? "ml-0" : "ml-2"} flex items-center`}
+          className={`${idx === 0 ? "ml-0" : "ml-1 lg:ml-2"} flex items-center`}
         >
           <input
             type="radio"

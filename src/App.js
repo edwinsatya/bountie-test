@@ -46,7 +46,6 @@ function App() {
     getCountries()
       .then((data) => {
         const newVal = getCountryFlagCode(data);
-        console.log(newVal);
         setListCountry(newVal);
       })
       .catch((err) => console.log(err));

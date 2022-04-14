@@ -58,7 +58,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
   };
 
   return (
-    <div className="px-3 py-6">
+    <div className="py-6">
       <div>
         <TitleForm title="Create New Account" />
         <div className="p-3 lg:p-5">
@@ -171,7 +171,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                 onChange={(e) =>
                   setFormState({
                     field: "country",
-                    value: e,
+                    value: e.target.value,
                   })
                 }
                 options={computeListCountry()}
@@ -223,7 +223,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                   onChange={(e) =>
                     setFormState({
                       field: "date",
-                      value: e,
+                      value: e.target.value,
                     })
                   }
                   options={getDate()}
@@ -239,7 +239,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                 className="p-2"
                 onChange={(e) =>
                   setFormState({
-                    field: "date",
+                    field: "month",
                     value: e,
                   })
                 }
@@ -254,7 +254,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                 className="p-2"
                 onChange={(e) =>
                   setFormState({
-                    field: "date",
+                    field: "year",
                     value: e,
                   })
                 }

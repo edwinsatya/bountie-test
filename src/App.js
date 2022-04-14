@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useState } from "react";
 import "./App.css";
+import Footer from "./components/Footer";
 import FormGroup from "./components/Form/FormGroup";
 import Header from "./components/Header";
 import Privacy from "./components/Privacy";
@@ -56,22 +57,34 @@ function App() {
     setFormState(newState);
   };
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  };
+
   return (
     <div className="App">
       <Header />
       <main>
         <TopInfo />
-        <form>
-          <FormGroup
-            setFormState={handleChangeState}
-            dataFormState={formState}
-            dataCountries={listCountry}
-          />
+        <div className="px-3 lg:px-5">
+          <form onSubmit={submitForm}>
+            <FormGroup
+              setFormState={handleChangeState}
+              dataFormState={formState}
+              dataCountries={listCountry}
+            />
 
-          <Privacy />
-        </form>
+            <Privacy />
+            <div className="px-3 flex lg:justify-end">
+              <button className="bg-yellow-400 w-full lg:w-2/12 p-2 rounded text-center flex justify-center items-center font-bold">
+                CREATE CUSTOMER
+              </button>
+            </div>
+          </form>
+        </div>
       </main>
-      <button onClick={() => console.log(formState)}>tes</button>
+      <Footer title="V1.0.7" />
     </div>
   );
 }

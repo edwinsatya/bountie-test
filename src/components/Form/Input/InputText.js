@@ -14,6 +14,7 @@ const InputText = ({
       disabled={disabled}
       required={required}
       type={type || "text"}
+      min={0}
       className={`${className} ${
         disabled && "bg-gray-200"
       } border border-gray-400 w-full p-2 focus:border-gray-500 outline-none`}

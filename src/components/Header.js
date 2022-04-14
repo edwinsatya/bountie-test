@@ -6,7 +6,7 @@ const Header = () => {
         <div className="h-full my-6 w-full relative">
           <div className="w-1/2 mx-auto flex justify-center">
             <img
-              className="w-1/2 lg:w-4/12"
+              className="w-10/12 lg:w-4/12"
               src="./assets/logo/logo.png"
               alt="logo-header"
             />

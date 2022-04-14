@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Tooltip from "../Tooltip";
 import InputRadio from "./Input/InputRadio";
 import InputSelect from "./Input/InputSelect";
 import InputText from "./Input/InputText";
@@ -215,20 +216,23 @@ const Form = ({ setFormState, dataFormState, dataCountries }) => {
             </InputWrapper>
           </div>
           <div className="lg:w-1/2 lg:pl-5 lg:flex lg:justify-between">
-            <InputWrapper title="Date of birth" required>
-              <InputSelect
-                className="p-2"
-                onChange={(e) =>
-                  setFormState({
-                    field: "date",
-                    value: e,
-                  })
-                }
-                options={getDate()}
-                required
-                placeHolder="DD"
-              />
-            </InputWrapper>
+            <div className="lg:w-4/12">
+              <InputWrapper title="Date of birth" required>
+                <InputSelect
+                  className="p-2"
+                  onChange={(e) =>
+                    setFormState({
+                      field: "date",
+                      value: e,
+                    })
+                  }
+                  options={getDate()}
+                  required
+                  placeHolder="DD"
+                />
+              </InputWrapper>
+              <Tooltip title="Indulge in birthday treats just for you!" />
+            </div>
 
             <InputWrapper title="Month" required>
               <InputText

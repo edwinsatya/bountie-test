@@ -6,7 +6,12 @@ import InputText from "./Input/InputText";
 import InputWrapper from "./Input/InputWrapper";
 import TitleForm from "./TitleForm";
 
-const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
+const FormGroup = ({
+  currentState,
+  setFormState,
+  dataFormState,
+  dataCountries,
+}) => {
   const listTitle = [
     {
       value: "Mrs",
@@ -89,6 +94,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                   })
                 }
                 required
+                value={currentState.lastName}
                 type="text"
                 placeHolder={"Last Name"}
               />
@@ -106,6 +112,7 @@ const FormGroup = ({ setFormState, dataFormState, dataCountries }) => {
                     value: e,
                   })
                 }
+                value={currentState.value}
                 type="text"
                 required
                 placeHolder={"First Name"}

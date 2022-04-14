@@ -1,13 +1,13 @@
-import { useLayoutEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import FormGroup from "./components/Form/FormGroup";
 import Header from "./components/Header";
+import Popup from "./components/Popup";
 import Privacy from "./components/Privacy";
 import TopInfo from "./components/TopInfo";
 
-const getCountries = () => {
+const getCountries = async () => {
   return fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((json) => json);
@@ -30,6 +30,10 @@ function App() {
 
   const [listCountry, setListCountry] = useState([]);
 
+  const [showPopup, setShowPopup] = useState(false);
+
+  const [agreePrivacy, setAgreePrivacy] = useState(false);
+
   const getCountryFlagCode = (countries) => {
     return countries.map((country) => {
       const idd = country.idd;
@@ -42,7 +46,7 @@ function App() {
     });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getCountries()
       .then((data) => {
         const newVal = getCountryFlagCode(data);
@@ -59,7 +63,7 @@ function App() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(formState);
+    setShowPopup(true);
   };
 
   return (
@@ -71,18 +75,27 @@ function App() {
           <form onSubmit={submitForm}>
             <FormGroup
               setFormState={handleChangeState}
+              currentState={formState}
               dataFormState={formState}
               dataCountries={listCountry}
             />
 
-            <Privacy />
+            <Privacy onChange={() => setAgreePrivacy(!agreePrivacy)} />
             <div className="px-3 flex lg:justify-end">
-              <button className="bg-yellow-400 w-full lg:w-2/12 p-2 rounded text-center flex justify-center items-center font-bold">
+              <button
+                disabled={!agreePrivacy}
+                className={`${
+                  !agreePrivacy ? "bg-gray-300" : "bg-yellow-400"
+                } w-full lg:w-2/12 p-2 rounded text-center flex justify-center items-center font-bold`}
+              >
                 CREATE CUSTOMER
               </button>
             </div>
           </form>
         </div>
+        {showPopup && (
+          <Popup dataPopup={formState} onClick={() => setShowPopup(false)} />
+        )}
       </main>
       <Footer title="V1.0.7" />
     </div>

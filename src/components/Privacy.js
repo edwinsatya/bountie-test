@@ -2,7 +2,7 @@ import TitleForm from "./Form/TitleForm";
 import SwitchToggle from "./SwitchToggle";
 import Tooltip from "./Tooltip";
 
-const Privacy = () => {
+const Privacy = ({ onChange }) => {
   return (
     <div className="py-6">
       <div className="p-3 lg:p-6">
@@ -85,7 +85,7 @@ const Privacy = () => {
         </div>
 
         <div className="flex flex-row mt-5">
-          <input type="checkbox" className="mt-1" />
+          <input onChange={onChange} type="checkbox" className="mt-1" />
           <p className="ml-2 mt-0 text-sm lg:text-base">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et modi
             asperiores, dolore voluptatem, molestias quod ipsum fugit non,
